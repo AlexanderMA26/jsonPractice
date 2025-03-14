@@ -7,11 +7,13 @@ let audio = 0;
 let read = 0;
 const genre = [];
 const author = [];
+const diff = [];
 
 for (let i = 0; i< data.length; i++){
     if ((data[i]["read?"] == "Yes") || (data[i]["read?"] == "Yes!")){
         read += 1;
         author.push(data[i].author);
+        
     }
     if ((data[i]["audio?"] == "Yes") || (data[i]["audio?"] == "Yes!")){
         audio += 1;
@@ -22,6 +24,7 @@ for (let i = 0; i< data.length; i++){
 
     
 }
+
 
 let peread = (read/total)*100;
 peread = peread.toFixed(2)
@@ -36,22 +39,22 @@ function mode(array)
 {
     if(array.length == 0)
         return null;
-    var modeMap = {};
-    var maxEl = array[0], maxCount = 1;
+    var genres = {};
+    var maxgenre = array[0], maxCount = 1;
     for(var i = 0; i < array.length; i++)
     {
         var el = array[i];
-        if(modeMap[el] == null)
-            modeMap[el] = 1;
+        if(genres[el] == null)
+            genres[el] = 1;
         else
-            modeMap[el]++;  
-        if(modeMap[el] > maxCount)
+            genres[el]++;  
+        if(genres[el] > maxCount)
         {
-            maxEl = el;
-            maxCount = modeMap[el];
+            maxgenre = el;
+            maxCount = genres[el];
         }
     }
-    return maxEl;
+    return maxgenre;
 }
 
 console.log(mode(genre) + " is your most popular genre.");
@@ -60,7 +63,37 @@ console.log(mode(author) + " is your most read author.");
 
 
 
+//Question 6
 
-// fetch('./rawBooks.json')
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+
+for (let i in data){
+    if ((data[i]["read?"] == "Yes") && (data[i]["Time on TBR (days)"] > 0)){
+        if (data[i]["Time on TBR (years)"] < 10)  {
+
+            diff.push(data[i]["Time on TBR (days)"]);
+        }
+        
+    }
+}
+
+const average = array => array.reduce((a, b) => a + b) / array.length;
+console.log("The average amount of time a book spends on the tbr list is " + average(diff).toFixed(1) + " days.");
+
+
+// Challenge Question
+
+for (let i = 0; i < data.length; i++){
+    if (data[i]["Date Bought"].charAt(0) == "D"){
+
+    } else if(data[i]["Date Bought"].charAt(0) == "N"){
+
+    }else if(data[i]["Date Bought"].charAt(0) == "O"){
+
+    }else if(data[i]["Date Bought"].charAt(0) == "S"){
+
+    }else if(data[i]["Date Bought"].charAt(0) == "F"){
+        
+    }
+
+}
+
