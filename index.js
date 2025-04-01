@@ -8,8 +8,14 @@ let read = 0;
 const genre = [];
 const author = [];
 const diff = [];
+const month = [];
 
 for (let i = 0; i< data.length; i++){
+    let x = data[i]["Date Bought"].split(" ")[0]
+    month.push(x);
+
+
+
     if ((data[i]["read?"] == "Yes") || (data[i]["read?"] == "Yes!")){
         read += 1;
         author.push(data[i].author);
@@ -24,6 +30,7 @@ for (let i = 0; i< data.length; i++){
 
     
 }
+
 
 
 let peread = (read/total)*100;
@@ -59,6 +66,7 @@ function mode(array)
 
 console.log(mode(genre) + " is your most popular genre.");
 console.log(mode(author) + " is your most read author.");
+console.log(mode(month) + " is the month when you buy the most books.");
 
 
 
@@ -78,22 +86,3 @@ for (let i in data){
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 console.log("The average amount of time a book spends on the tbr list is " + average(diff).toFixed(1) + " days.");
-
-
-// Challenge Question
-
-for (let i = 0; i < data.length; i++){
-    if (data[i]["Date Bought"].charAt(0) == "D"){
-
-    } else if(data[i]["Date Bought"].charAt(0) == "N"){
-
-    }else if(data[i]["Date Bought"].charAt(0) == "O"){
-
-    }else if(data[i]["Date Bought"].charAt(0) == "S"){
-
-    }else if(data[i]["Date Bought"].charAt(0) == "F"){
-        
-    }
-
-}
-
